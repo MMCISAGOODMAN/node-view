@@ -1,0 +1,94 @@
+{
+  "name": "node-view",
+  "version": "1.0.0",
+  "description": "跨平台 JSON/YAML 可视化编辑器 - 树形视图与代码编辑器双向联动",
+  "main": "dist-electron/main.js",
+  "author": "mamingcong",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MMCISAGOODMAN/node-view.git"
+  },
+  "homepage": "https://github.com/MMCISAGOODMAN/node-view#readme",
+  "bugs": {
+    "url": "https://github.com/MMCISAGOODMAN/node-view/issues"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run build:app && npm run build:pack",
+    "build:app": "vue-tsc --noEmit && vite build",
+    "build:pack": "electron-builder --publish never",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit && vue-tsc --noEmit -p tsconfig.node.json"
+  },
+  "dependencies": {
+    "@codemirror/commands": "^6.8.0",
+    "@codemirror/lang-json": "^6.0.1",
+    "@codemirror/language": "^6.10.8",
+    "@codemirror/legacy-modes": "^6.4.2",
+    "@codemirror/lint": "^6.8.4",
+    "@codemirror/search": "^6.5.8",
+    "@codemirror/state": "^6.5.2",
+    "@codemirror/theme-one-dark": "^6.1.2",
+    "@codemirror/view": "^6.36.2",
+    "@lezer/highlight": "^1.2.1",
+    "codemirror": "^6.0.1",
+    "js-yaml": "^4.1.0",
+    "json5": "^2.2.3",
+    "pinia": "^2.3.1",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.20.0",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "electron": "^34.0.2",
+    "electron-builder": "^25.1.8",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.7",
+    "vite-plugin-electron": "^0.28.8",
+    "vite-plugin-electron-renderer": "^0.14.6",
+    "vue-tsc": "^2.2.0"
+  },
+  "build": {
+    "appId": "com.nodeview.editor",
+    "productName": "NodeView",
+    "copyright": "Copyright © 2026 mamingcong",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*"
+    ],
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.developer-tools",
+      "artifactName": "${productName}-${version}-mac-${arch}.${ext}"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "artifactName": "${productName}-${version}-win-${arch}.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Development",
+      "artifactName": "${productName}-${version}-linux-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": true
+    }
+  }
+}

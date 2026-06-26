@@ -1,0 +1,221 @@
+/* ===== 设计令牌：暗色主题（默认） ===== */
+:root,
+[data-theme='dark'] {
+  --bg-primary: #1e1e1e;
+  --bg-panel: #252526;
+  --bg-elevated: #2d2d2d;
+  --bg-hover: rgba(255, 255, 255, 0.06);
+  --bg-active: rgba(255, 255, 255, 0.1);
+  --border: #3c3c3c;
+  --border-subtle: #333333;
+  --text-primary: #cccccc;
+  --text-secondary: #858585;
+  --text-muted: #6e6e6e;
+  --accent: #007acc;
+  --accent-hover: #1a8ad4;
+  --accent-subtle: rgba(0, 122, 204, 0.15);
+  --color-string: #ce9178;
+  --color-number: #b5cea8;
+  --color-boolean: #569cd6;
+  --color-key: #9cdcfe;
+  --color-error: #f14c4c;
+  --color-warning: #cca700;
+  --color-success: #89d185;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;
+}
+
+/* ===== 亮色主题 ===== */
+[data-theme='light'] {
+  --bg-primary: #ffffff;
+  --bg-panel: #f3f3f3;
+  --bg-elevated: #ebebeb;
+  --bg-hover: rgba(0, 0, 0, 0.04);
+  --bg-active: rgba(0, 0, 0, 0.08);
+  --border: #e0e0e0;
+  --border-subtle: #ebebeb;
+  --text-primary: #333333;
+  --text-secondary: #717171;
+  --text-muted: #999999;
+  --accent: #0066bf;
+  --accent-hover: #0078d4;
+  --accent-subtle: rgba(0, 102, 191, 0.1);
+  --color-string: #a31515;
+  --color-number: #098658;
+  --color-boolean: #0000ff;
+  --color-key: #001080;
+  --color-error: #e51400;
+  --color-warning: #bf8803;
+  --color-success: #388a34;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== 全局重置 ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  height: 100%;
+}
+
+/* ===== 等宽字体区域 ===== */
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* ===== 滚动条 ===== */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::selection {
+  background: var(--accent-subtle);
+}
+
+/* ===== 通用按钮重置 ===== */
+button {
+  font-family: inherit;
+}
+
+/* ===== 面板标题 ===== */
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 35px;
+  padding: 0 12px;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.panel-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.panel-badge {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+}
+
+/* ===== 类型徽章（树节点） ===== */
+.type-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+
+.type-badge.type-object {
+  color: #4fc1ff;
+  background: rgba(79, 193, 255, 0.12);
+}
+
+.type-badge.type-array {
+  color: #c586c0;
+  background: rgba(197, 134, 192, 0.12);
+}
+
+.type-badge.type-string {
+  color: var(--color-string);
+  background: rgba(206, 145, 120, 0.12);
+}
+
+.type-badge.type-number {
+  color: var(--color-number);
+  background: rgba(181, 206, 168, 0.12);
+}
+
+.type-badge.type-boolean {
+  color: var(--color-boolean);
+  background: rgba(86, 156, 214, 0.12);
+}
+
+.type-badge.type-null {
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+}
+
+[data-theme='light'] .type-badge.type-object {
+  color: #0451a5;
+  background: rgba(4, 81, 165, 0.08);
+}
+
+[data-theme='light'] .type-badge.type-array {
+  color: #811f3f;
+  background: rgba(129, 31, 63, 0.08);
+}
+
+[data-theme='light'] .type-badge.type-string {
+  background: rgba(163, 21, 21, 0.08);
+}
+
+[data-theme='light'] .type-badge.type-number {
+  background: rgba(9, 134, 88, 0.08);
+}
+
+[data-theme='light'] .type-badge.type-boolean {
+  background: rgba(0, 0, 255, 0.06);
+}
