@@ -1,9 +1,12 @@
 {
   "name": "node-view",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "跨平台 JSON/YAML 可视化编辑器 - 树形视图与代码编辑器双向联动",
   "main": "dist-electron/main.js",
-  "author": "mamingcong",
+  "author": {
+    "name": "mamingcong",
+    "email": "hellomamingcong@163.com"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -55,8 +58,7 @@
     "productName": "NodeView",
     "copyright": "Copyright © 2026 mamingcong",
     "directories": {
-      "output": "release",
-      "buildResources": "build"
+      "output": "release"
     },
     "files": [
       "dist/**/*",
@@ -83,6 +85,9 @@
         "deb"
       ],
       "category": "Development",
+      "maintainer": "mamingcong <hellomamingcong@163.com>",
+      "synopsis": "JSON/YAML visual editor",
+      "description": "Cross-platform JSON/YAML visual editor with bidirectional tree and code sync.",
       "artifactName": "${productName}-${version}-linux-${arch}.${ext}"
     },
     "nsis": {

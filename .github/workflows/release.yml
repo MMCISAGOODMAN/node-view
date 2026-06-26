@@ -53,17 +53,19 @@ jobs:
           CSC_IDENTITY_AUTO_DISCOVERY: false
 
       - name: Upload artifacts
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: node-view-${{ matrix.platform }}
-          path: |
-            release/**/*
+          path: release/**/*
           if-no-files-found: error
           retention-days: 7
 
   publish:
     needs: build
     runs-on: ubuntu-latest
+    # 即使某个平台构建失败，也发布已成功平台的安装包
+    if: always() && !cancelled() && needs.build.result != 'skipped'
 
     steps:
       - name: Download all artifacts
@@ -72,10 +74,17 @@ jobs:
           path: artifacts
           merge-multiple: true
 
+      - name: Verify artifacts
+        run: |
+          echo "Downloaded artifacts:"
+          find artifacts -type f | head -50
+          test "$(find artifacts -type f | wc -l)" -gt 0
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: true
           files: artifacts/**/*
+          fail_on_unmatched_files: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
